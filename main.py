@@ -8,20 +8,20 @@ dict_file_list = []
 user_input = "Beginning of the Application String"
 
 def take_from_json():
-            with open("tasks.json") as file_object:     #This code pulls the tasks from the JSON file, then clears the dictionary array
-                dict_file_list = json.load(file_object)
-            for dict_task in dict_file_list:
-                task = Task.from_dictionary(dict_task)
-                class_file_list.append(task)
-            dict_file_list.clear()
+    with open("tasks.json") as file_object:     #This code pulls the tasks from the JSON file, then clears the dictionary array
+        dict_file_list = json.load(file_object)
+    for dict_task in dict_file_list:
+        task = Task.from_dictionary(dict_task)
+        class_file_list.append(task)
+    dict_file_list.clear()
 
 def send_to_json():
-        for task in class_file_list:                    #This code puts the task into the JSON file, then clears out the arrays
-            dict_file_list.append(task.__dict__)
-        with open("tasks.json", "w") as file_object:
-            json.dump(dict_file_list, file_object)
-        class_file_list.clear()
-        dict_file_list.clear()
+    for task in class_file_list:                    #This code puts the task into the JSON file, then clears out the arrays
+        dict_file_list.append(task.__dict__)
+    with open("tasks.json", "w") as file_object:
+        json.dump(dict_file_list, file_object)
+    class_file_list.clear()
+    dict_file_list.clear()
 
 def add_a_task():
     key, value = add_task()
