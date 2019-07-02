@@ -30,12 +30,17 @@ def add_a_task():
 
 def delete_a_task():
     if len(class_file_list) == 0:
-        print("There are no Tasks in your Task List!")
+        print("\n\nThere are no Tasks in your Task List!")
     else:
         for index in range(len(class_file_list)):
             print(f"{(index + 1)} - {class_file_list[index].title} - {class_file_list[index].priority}")
-        index_to_delete = del_task()
-        del class_file_list[index_to_delete]
+        while True:
+            try:
+                index_to_delete = del_task()
+                del class_file_list[index_to_delete]
+                break
+            except IndexError:
+                print("ERROR: Please enter a number from the list to delete.")
         print("Task Deleted Successfully!")
 
 def back_to_menu():
@@ -48,12 +53,12 @@ def main_menu():
         print("ERROR: Please enter an option from the list!")
     return user_input
 
-print("Welcome to the To-Do List Application!")
+print("\n\nWelcome to the To-Do List Application!\n\n")
 
 while True: # Loops the Application for the user
 
     if user_input == "Beginning of the Application String":  # Starting out the file with adding a task, rather than displaying the options
-        print("To begin your task list, let's start by adding a Task!")
+        print("\nTo begin your task list, let's start by adding a Task!\n")
         add_a_task()
         send_to_json()
 
@@ -64,12 +69,12 @@ while True: # Loops the Application for the user
             take_from_json()
             add_a_task()
             send_to_json()
-            print("Task Added Successfully!")
+            print("\n\nTask Added Successfully!\n\n")
             user_input = back_to_menu()
         
     if user_input == "2": # Deletes a Task from the Task List
         while user_input != "m" and user_input != "q":
-            cancel_input = input("Are you sure you would like to delete a task\nPress 'c' to cancel, or any other key to continue.")
+            cancel_input = input("\nAre you sure you would like to delete a task\nPress 'c' to cancel, or any other key to continue.\n")
             if cancel_input == "c":
                 break
             take_from_json()
@@ -80,11 +85,11 @@ while True: # Loops the Application for the user
     if user_input == "3": # Views the Task List
         take_from_json()
         if len(class_file_list) == 0:
-            print("There are no Tasks in your Task List!")
+            print("\nThere are no Tasks in your Task List!\n")
         for index in range(len(class_file_list)):
             print(f"{(index + 1)} - {class_file_list[index].title} - {class_file_list[index].priority}")
         send_to_json()
-        user_input = input("Press any key to return to the main menu, or press 'q' to quit: ")
+        user_input = input("\n\nPress any key to return to the main menu, or press 'q' to quit: ")
 
     if user_input == "q": # Quits the Application
         print("We'll see you next time! And remember!")

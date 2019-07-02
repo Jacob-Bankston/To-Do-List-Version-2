@@ -7,5 +7,3 @@ def del_task():
             return del_index
         except ValueError:
             print("ERROR: Please enter a number from the list to delete.")
-        except IndexError:
-            print("ERROR: Please enter a number from the list to delete.")
